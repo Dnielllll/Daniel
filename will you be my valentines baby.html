@@ -1,0 +1,1145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>will you be my valentine?</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            background: linear-gradient(145deg, #ffb3ba 0%, #ffd1dc 40%, #ffe9f0 100%);
+            font-family: 'Arial Black', 'Helvetica Neue', Arial, sans-serif;
+            font-weight: 700;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+            padding: 20px;
+            position: relative;
+        }
+        .letter-container {
+            max-width: 700px;
+            width: 100%;
+            background: rgba(255, 248, 250, 0.9);
+            backdrop-filter: blur(8px);
+            border-radius: 56px 56px 40px 56px;
+            box-shadow: 0 25px 40px rgba(200, 80, 110, 0.3);
+            padding: 40px 35px;
+            border: 3px solid #fff5f7;
+            text-align: center;
+            transition: 0.3s;
+        }
+        h1 {
+            font-size: 2.8rem;
+            color: #ce3b62;
+            text-shadow: 4px 4px 0 #ffe4eb, 6px 6px 20px rgba(255, 120, 160, 0.5);
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            letter-spacing: 2px;
+        }
+        .heart-pulse {
+            animation: heartbeat 1.4s infinite;
+            display: inline-block;
+        }
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            10% { transform: scale(1.2); }
+            20% { transform: scale(1); }
+            30% { transform: scale(1.2); }
+            40% { transform: scale(1); }
+        }
+        .question-bubble {
+            background: #ffeef2;
+            border-radius: 100px 100px 100px 40px;
+            padding: 28px 20px;
+            margin: 25px 0 30px;
+            border: 3px dashed #ff8da1;
+            box-shadow: inset 0 -5px 0 #ffc2c9;
+        }
+        .valentine-text {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #a12e4a;
+            line-height: 1.3;
+            word-break: break-word;
+        }
+        .dynamic-message {
+            font-size: 1.7rem;
+            min-height: 80px;
+            color: #b3415c;
+            background: #fff0f3;
+            padding: 15px 20px;
+            border-radius: 50px;
+            margin: 15px 0 5px;
+            font-weight: 600;
+            transition: 0.2s;
+            border: 2px solid #ffb6c1;
+        }
+        .button-panel {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 45px;
+            margin: 30px 0 15px;
+            position: relative;
+            min-height: 100px;
+        }
+        .btn {
+            border: none;
+            font-size: 2rem;
+            font-weight: bold;
+            padding: 18px 40px;
+            border-radius: 60px;
+            color: white;
+            text-shadow: 2px 2px 0 #832a46;
+            box-shadow: 0 12px 0 #b34b67, 0 15px 30px rgba(180, 70, 100, 0.4);
+            transition: 0.08s linear;
+            cursor: pointer;
+            border: 3px solid #ffe6ec;
+            letter-spacing: 4px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .btn:active {
+            transform: translateY(8px);
+            box-shadow: 0 4px 0 #b34b67, 0 15px 30px #d46b7a;
+        }
+        .btn-yes {
+            background: #ff6f91;
+            box-shadow: 0 12px 0 #c93e5e, 0 15px 30px #ff86a4;
+        }
+        .btn-no {
+            background: #a1a1a1;
+            box-shadow: 0 12px 0 #6d6d6d, 0 15px 30px rgba(120,120,120,0.5);
+            position: relative;
+            z-index: 100002;
+        }
+        .btn-no:active {
+            box-shadow: 0 4px 0 #6d6d6d;
+        }
+        /* GIF celebration area — hidden by magic */
+        .gif-celebration {
+            margin-top: 35px;
+            padding-top: 20px;
+            border-top: 5px solid #ffa5b9;
+            display: none;
+            animation: pop 0.6s cubic-bezier(0.3, 1.3, 0.5, 1);
+        }
+        @keyframes pop {
+            0% { opacity: 0; transform: scale(0.3) rotate(-3deg); }
+            100% { opacity: 1; transform: scale(1) rotate(0); }
+        }
+        .gif-box {
+            background: #ffd9e2;
+            padding: 25px 20px 20px;
+            border-radius: 60px 60px 40px 40px;
+            box-shadow: 0 15px 25px #e6a0b5;
+        }
+        .gif-box img {
+            max-width: 100%;
+            width: 100%;
+            border-radius: 40px;
+            border: 8px solid white;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            max-height: 280px;
+            object-fit: cover;
+        }
+        .yeheyyy-love {
+            font-size: 1.8rem;
+            font-weight: 900;
+            font-family: 'Arial Black', Arial, sans-serif;
+            margin-top: 20px;
+            color: #ff3366;
+            letter-spacing: 4px;
+            transform: scale(1.02);
+            text-shadow: 3px 3px 0 #ffe0e5, 6px 6px 15px rgba(255, 80, 130, 0.4);
+        }
+        /* Photo gallery/button styles */
+        .gallery-wrap {
+            margin-top: 14px;
+        }
+        .gallery-btn {
+            margin-top: 12px;
+            background: linear-gradient(90deg,#ff87a7,#ff4d6d);
+            border-radius: 40px;
+            padding: 10px 20px;
+            color: white;
+            font-weight: 700;
+            cursor: pointer;
+            border: 3px solid #fff0f3;
+            box-shadow: 0 8px 0 #c95a73, 0 12px 24px rgba(200,80,110,0.2);
+            font-size: 1.1rem;
+        }
+        .photo-gallery {
+            display: none;
+            margin-top: 16px;
+            background: rgba(255,245,248,0.95);
+            padding: 18px;
+            border-radius: 18px;
+            box-shadow: 0 10px 30px rgba(200,80,110,0.06);
+        }
+        .gallery-title {
+            font-weight: 800;
+            color: #b32f56;
+            margin-bottom: 12px;
+            font-size: 1.2rem;
+        }
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit,minmax(120px,1fr));
+            gap: 10px;
+        }
+        .gallery-grid img {
+            width: 100%;
+            height: 90px;
+            object-fit: cover;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: transform .18s ease, box-shadow .18s ease, filter .18s ease;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+            filter: saturate(1.05) contrast(1.02);
+        }
+        .gallery-grid img:hover { transform: translateY(-6px) scale(1.03); box-shadow: 0 12px 30px rgba(0,0,0,0.12); }
+
+        /* viewer overlay */
+        .viewer {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.6);
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            padding: 20px;
+        }
+        .viewer-inner {
+            background: white;
+            border-radius: 18px;
+            padding: 14px;
+            max-width: 900px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+            position: relative;
+        }
+        .viewer img {
+            width: 100%;
+            height: 480px;
+            object-fit: cover;
+            border-radius: 12px;
+            transition: transform .2s ease, filter .2s ease;
+            filter: saturate(1.05) brightness(1.02);
+        }
+        .viewer-close, .viewer-nav {
+            position: absolute;
+            top: 12px;
+            background: rgba(255,255,255,0.9);
+            border: none;
+            padding: 8px 10px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 700;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+        }
+        .viewer-close { right: 12px; }
+        .viewer-nav.left { left: 12px; }
+        .viewer-nav.right { right: 60px; }
+
+        /* bloom heart effect (appears when user holds/mousedown) */
+        .heart-bloom {
+            position: absolute;
+            pointer-events: none;
+            transform: translate(-50%, -50%) scale(0.2);
+            opacity: 0;
+            transition: transform .45s cubic-bezier(.2,.8,.2,1), opacity .45s;
+            z-index: 3;
+            font-size: 48px;
+            text-shadow: 0 6px 20px rgba(255,80,130,0.5);
+        }
+        .heart-bloom.show {
+            transform: translate(-50%, -50%) scale(1.15);
+            opacity: 1;
+        }
+        .small-note {
+            color: #bc4e6a;
+            margin-top: 20px;
+            font-size: 1.2rem;
+            font-style: italic;
+        }
+        /* Gallery Modal Styles */
+        .gallery-modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(10,6,8,0.55), rgba(10,6,8,0.6));
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            pointer-events: auto;
+        }
+        .gallery-modal.show {
+            display: flex;
+        }
+        .gallery-modal-content {
+            background: linear-gradient(180deg, #fff6fb, #fff0f6);
+            border-radius: 20px;
+            padding: 25px;
+            max-width: 1100px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.45);
+            z-index: 100000;
+            pointer-events: auto;
+            position: relative;
+        }
+        .gallery-topbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 100;
+            pointer-events: auto;
+        }
+        .gallery-title-text {
+            font-weight: 900;
+            color: #ff4d6d;
+            font-size: 1.8rem;
+        }
+        .gallery-subtitle-text {
+            color: #b33b56;
+            font-weight: 800;
+            margin-top: 8px;
+            font-size: 0.95rem;
+        }
+        .gallery-close-btn {
+            background: linear-gradient(90deg, #ff87a7, #ff4d6d);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 12px;
+            border: none;
+            cursor: pointer !important;
+            box-shadow: 0 8px 0 rgba(200,80,110,0.12);
+            font-weight: 700;
+            font-size: 1rem;
+            pointer-events: auto !important;
+            z-index: 100001;
+            position: relative;
+            transition: all 0.2s ease;
+            display: inline-block;
+            user-select: none;
+        }
+        .gallery-close-btn:hover {
+            transform: scale(1.08) translateY(-2px);
+            box-shadow: 0 10px 20px rgba(200,80,110,0.25);
+        }
+        .gallery-close-btn:active {
+            transform: scale(0.95);
+        }
+        /* gallery grid */
+        .gallery-grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 14px;
+            margin-top: 18px;
+            pointer-events: auto !important;
+        }
+        .gallery-card {
+            position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+            background: white;
+            box-shadow: 0 10px 30px rgba(170, 50, 90, 0.06);
+            cursor: pointer;
+            pointer-events: auto !important;
+            transition: transform 0.2s ease;
+        }
+        .gallery-card:hover {
+            transform: translateY(-4px);
+        }
+        .gallery-card img {
+            width: 100%;
+            height: 260px;
+            object-fit: cover;
+            display: block;
+            transition: transform .35s ease, filter .35s ease;
+            pointer-events: auto;
+            cursor: pointer;
+        }
+        .gallery-card:hover img {
+            transform: scale(1.04);
+            filter: brightness(1.05) saturate(1.05);
+        }
+        .gallery-card-caption {
+            position: absolute;
+            left: 12px;
+            bottom: 12px;
+            background: linear-gradient(90deg, rgba(255,255,255,0.92), rgba(255,255,255,0.6));
+            padding: 6px 10px;
+            border-radius: 10px;
+            font-weight: 800;
+            color: #7a233b;
+            pointer-events: none;
+        }
+        /* Viewer within modal */
+        .gallery-viewer {
+            position: fixed;
+            inset: 0;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(180deg, rgba(10,6,8,0.8), rgba(10,6,8,0.85));
+            z-index: 99999;
+            padding: 28px;
+        }
+        .gallery-viewer.show {
+            display: flex;
+        }
+        .gallery-viewer-inner {
+            background: linear-gradient(180deg, #fff6fb, #fff0f6);
+            border-radius: 16px;
+            padding: 12px;
+            max-width: 1000px;
+            width: 100%;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.45);
+            position: relative;
+        }
+        .gallery-viewer-img {
+            width: 100%;
+            height: 620px;
+            object-fit: cover;
+            border-radius: 10px;
+            display: block;
+            transition: filter .25s ease, transform .25s ease;
+        }
+        .gallery-viewer-close, .gallery-viewer-nav {
+            position: absolute;
+            top: 14px;
+            background: rgba(255,255,255,0.95);
+            border: none;
+            padding: 10px 12px;
+            border-radius: 10px;
+            cursor: pointer;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.14);
+            font-weight: 800;
+            font-size: 1.1rem;
+            transition: all 0.2s ease;
+            z-index: 100;
+        }
+        .gallery-viewer-close:hover, .gallery-viewer-nav:hover {
+            background: rgba(255,255,255,1);
+            transform: scale(1.1);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+        .gallery-viewer-close:active, .gallery-viewer-nav:active {
+            transform: scale(0.95);
+        }
+        .gallery-viewer-close {
+            right: 14px;
+        }
+        .gallery-viewer-nav.left {
+            left: 14px;
+        }
+        .gallery-viewer-nav.right {
+            right: 84px;
+        }
+        .gallery-viewer-exit {
+            position: absolute;
+            right: 14px;
+            bottom: 14px;
+            background: #ff4d6d;
+            color: white;
+            border: none;
+            padding: 10px 14px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 800;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.14);
+            font-size: 0.95rem;
+            transition: all 0.2s ease;
+            z-index: 100;
+        }
+        .gallery-viewer-exit:hover {
+            background: #ff2d4d;
+            transform: scale(1.05);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+        .gallery-viewer-exit:active {
+            transform: scale(0.98);
+        }
+        /* Heart bloom in viewer */
+        .gallery-bloom {
+            position: absolute;
+            pointer-events: none;
+            transform: translate(-50%, -50%) scale(0.2);
+            opacity: 0;
+            transition: transform .45s cubic-bezier(.2, .8, .2, 1), opacity .45s;
+            font-size: 54px;
+            text-shadow: 0 8px 30px rgba(255, 80, 130, 0.45);
+        }
+        .gallery-bloom.show {
+            transform: translate(-50%, -50%) scale(1.12);
+            opacity: 1;
+        }
+        /* reset & responsive */
+        @media (max-width: 550px) {
+            .letter-container { padding: 30px 18px; }
+            .valentine-text { font-size: 1.9rem; }
+            .btn { font-size: 1.6rem; padding: 14px 28px; }
+            .gallery-modal-content { padding: 15px; }
+            .gallery-title-text { font-size: 1.4rem; }
+            .gallery-viewer-img { height: 420px; }
+            .gallery-card img { height: 180px; }
+            .gallery-viewer-nav.right { right: 50px; }
+            .gallery-viewer-exit { right: 14px; bottom: 10px; padding: 8px 10px; font-size: 0.85rem; }
+            .gallery-viewer-close { padding: 8px 9px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="letter-container" id="loveLetter">
+        <h1>
+            <span>💗</span>
+            <span class="heart-pulse">❤️</span>
+            <span>💗</span>
+        </h1>
+
+        <!-- main question area -->
+        <div class="question-bubble">
+            <div class="valentine-text" id="mainQuestion">
+                will you be my valentines baby kelly?
+            </div>
+        </div>
+
+        <!-- dynamic message changes with each NO click -->
+        <div class="dynamic-message" id="messageBox">
+            💕 click YES or NO? 💕
+        </div>
+
+        <!-- BUTTON REALM: YES always calm, NO runs on CLICK only -->
+        <div class="button-panel" id="buttonPanel">
+            <button class="btn btn-yes" id="yesButton">YES 💘</button>
+            <button class="btn btn-no" id="noButton">NO 😿</button>
+        </div>
+
+        <!-- HIDDEN SURPRISE – only appears when YES is finally clicked -->
+        <div id="surpriseGifArea" class="gif-celebration">
+            <div class="gif-box">
+                <img src="https://media.tenor.com/VGWpu8FH82AAAAAM/happy-cat-yippee-cat.gif" 
+                     alt="cute dancing valentine cat" 
+                     onerror="this.onerror=null; this.src='https://media.tenor.com/3XbYxE1V6j4AAAAi/love-hearts.gif'; this.alt='floating hearts'">
+                <div class="yeheyyy-love">
+                    I LOVE YOU KELLY KO 💖✨
+                </div>
+                <div class="gallery-wrap">
+                    <button id="openGalleryBtn" class="gallery-btn">Click Me</button>
+
+                    <div id="photoGallery" class="photo-gallery" aria-hidden="true">
+                        <div class="gallery-title">ang ganda talaga ng baby ko</div>
+                        <div class="gallery-grid" id="galleryGrid">
+                            <!-- thumbnails (click to open viewer) -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="small-note">
+            🌹 every "NO" brings us closer to YES 🌹
+        </div>
+    </div>
+
+    <!-- Gallery Modal -->
+
+    <div id="galleryModal" class="gallery-modal">
+        <div class="gallery-modal-content">
+            <div class="gallery-topbar">
+                <div>
+                    <div class="gallery-title-text">ang ganda talaga ng baby ko</div>
+                    <div class="gallery-subtitle-text">pictures i collected from you 💕</div>
+                    <div class="gallery-subtitle-text">valentine's gallery • hold/tap photos for heart bloom</div>
+                </div>
+                <button id="galleryModalClose" class="gallery-close-btn" onclick="closeGalleryAndReturnHome(); return false;">Close</button>
+            </div>
+            <div id="galleryGridContainer" class="gallery-grid-container">
+                <!-- images injected by JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Image Viewer (inside modal) -->
+    <div id="galleryViewer" class="gallery-viewer">
+        <div class="gallery-viewer-inner">
+            <button class="gallery-viewer-nav left" id="galleryPrevBtn" title="Previous photo (← arrow key)">◀</button>
+            <button class="gallery-viewer-nav right" id="galleryNextBtn" title="Next photo (→ arrow key)">▶</button>
+            <button class="gallery-viewer-close" id="galleryViewerClose" title="Close photo">✕</button>
+            <button class="gallery-viewer-exit" id="galleryExitBtn">✕ Exit</button>
+            <div style="position:relative">
+                <img id="galleryViewerImg" class="gallery-viewer-img" src="" alt="photo">
+                <div id="galleryBloom" class="gallery-bloom">💖</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Gallery functionality
+        (function() {
+            "use strict";
+
+            const galleryImages = [
+                'https://i.ibb.co/yF3rFGrh/1.jpg',
+                'https://i.ibb.co/PvPR17k9/2.jpg',
+                'https://i.ibb.co/h1tXx2vc/3.jpg',
+                'https://i.ibb.co/jPJkhhgc/4.jpg',
+                'https://i.ibb.co/G1p21pK/5.jpg',
+                'https://i.ibb.co/ym40WXmR/6.jpg',
+                'https://i.ibb.co/8g4h3kZ8/7.jpg',
+                'https://i.ibb.co/zhnXFzZr/8.jpg',
+                'https://i.ibb.co/8gCSXcY3/9.jpg',
+                'https://i.ibb.co/sJPRPMmW/10.jpg'
+            ];
+
+            const galleryModal = document.getElementById('galleryModal');
+            const galleryGridContainer = document.getElementById('galleryGridContainer');
+            const galleryViewer = document.getElementById('galleryViewer');
+            const galleryViewerImg = document.getElementById('galleryViewerImg');
+            const galleryBloom = document.getElementById('galleryBloom');
+            const openGalleryBtn = document.getElementById('openGalleryBtn');
+            const galleryModalClose = document.getElementById('galleryModalClose');
+            const galleryViewerClose = document.getElementById('galleryViewerClose');
+            const galleryExitBtn = document.getElementById('galleryExitBtn');
+            const galleryPrevBtn = document.getElementById('galleryPrevBtn');
+            const galleryNextBtn = document.getElementById('galleryNextBtn');
+
+            let currentImageIndex = 0;
+
+            // Populate gallery grid
+            function populateGallery() {
+                galleryGridContainer.innerHTML = '';
+                galleryImages.forEach((src, idx) => {
+                    const card = document.createElement('div');
+                    card.className = 'gallery-card';
+                    card.style.cursor = 'pointer';
+                    card.dataset.imageIndex = idx;
+                    
+                    const img = document.createElement('img');
+                    img.src = src;
+                    img.alt = 'photo ' + (idx + 1);
+                    img.style.cursor = 'pointer';
+                    
+                    const cap = document.createElement('div');
+                    cap.className = 'gallery-card-caption';
+                    cap.textContent = 'photo ' + (idx + 1);
+                    
+                    card.appendChild(img);
+                    card.appendChild(cap);
+                    galleryGridContainer.appendChild(card);
+                });
+            }
+
+            function openGalleryModal() {
+                galleryModal.classList.add('show');
+                populateGallery();
+            }
+
+            function closeGalleryModal() {
+                galleryModal.classList.remove('show');
+                closeImageViewer();
+            }
+
+            function openImageViewer(idx) {
+                currentImageIndex = idx;
+                galleryViewerImg.src = galleryImages[idx];
+                galleryModal.classList.remove('show');  // Hide modal when opening viewer
+                galleryViewer.classList.add('show');    // Show viewer
+            }
+
+            function closeImageViewer() {
+                galleryViewer.classList.remove('show');  // Hide viewer
+                galleryModal.classList.add('show');      // Show modal again
+            }
+
+            function nextImage() {
+                currentImageIndex = (currentImageIndex + 1) % galleryImages.length;
+                galleryViewerImg.src = galleryImages[currentImageIndex];
+            }
+
+            function prevImage() {
+                currentImageIndex = (currentImageIndex - 1 + galleryImages.length) % galleryImages.length;
+                galleryViewerImg.src = galleryImages[currentImageIndex];
+            }
+
+            // Event listeners
+            openGalleryBtn.addEventListener('click', openGalleryModal);
+            galleryModalClose.addEventListener('click', closeGalleryModal);
+            galleryViewerClose.addEventListener('click', closeImageViewer);
+            galleryExitBtn.addEventListener('click', closeImageViewer);
+            galleryPrevBtn.addEventListener('click', prevImage);
+            galleryNextBtn.addEventListener('click', nextImage);
+
+            // Close menu when clicking outside the modal content
+            galleryModal.addEventListener('click', (e) => {
+                if (e.target === galleryModal) {
+                    closeGalleryModal();
+                }
+            }, false);
+
+            // Gallery card click handler using event delegation
+            galleryGridContainer.addEventListener('click', (e) => {
+                const card = e.target.closest('.gallery-card');
+                if (card) {
+                    const idx = parseInt(card.dataset.imageIndex, 10);
+                    openImageViewer(idx);
+                }
+            }, false);
+
+            // Close viewer when clicking outside
+            galleryViewer.addEventListener('click', (e) => {
+                if (e.target === galleryViewer) closeImageViewer();
+            });
+
+            // Heart bloom on hold/tap
+            function showBloomAt(e) {
+                const rect = galleryViewerImg.getBoundingClientRect();
+                const x = (e.touches && e.touches[0]) ? e.touches[0].clientX : e.clientX;
+                const y = (e.touches && e.touches[0]) ? e.touches[0].clientY : e.clientY;
+                galleryBloom.style.left = (x - rect.left) + 'px';
+                galleryBloom.style.top = (y - rect.top) + 'px';
+                galleryBloom.classList.add('show');
+                setTimeout(() => galleryBloom.classList.remove('show'), 900);
+            }
+
+            galleryViewerImg.addEventListener('mousedown', showBloomAt);
+            galleryViewerImg.addEventListener('touchstart', showBloomAt);
+
+            // Keyboard navigation
+            window.addEventListener('keydown', (e) => {
+                if (!galleryViewer.classList.contains('show')) return;
+                if (e.key === 'ArrowRight') nextImage();
+                if (e.key === 'ArrowLeft') prevImage();
+                if (e.key === 'Escape') closeImageViewer();
+            });
+        })();
+    </script>
+
+    <script>
+        (function() {
+            "use strict";
+
+            // ----- DOM elements -----
+            const noBtn = document.getElementById('noButton');
+            const yesBtn = document.getElementById('yesButton');
+            const messageBox = document.getElementById('messageBox');
+            const mainQuestion = document.getElementById('mainQuestion');
+            const surpriseArea = document.getElementById('surpriseGifArea');
+            const panel = document.getElementById('buttonPanel');
+
+            // ----- state -----
+            let noClickCount = 0;          // count how many times NO has been clicked
+            let isYesClicked = false;      // lock everything after YES
+
+            // ----- playful message sequence (infinite loop after certain point) -----
+            const noMessages = [
+                "are you sure baby? 🥺",          
+                "really? 😭",               
+                "baby naman! 💪💕", 
+                "are you sure? 💔",         
+                "really really? 🥹",         
+                "hind ako susuko baby! 🌸", 
+                "are you sure? 🥺👉👈",      
+                "ang sakit :(",
+                "really? still no? 🥲",      
+                "take your time baby 💑",
+                "sure ka na talaga? 🥺💗",        
+                "you know you want to say YES 💖",
+                "i'm not giving up bleh! ✨",
+                "are you sure baby? 😇"
+            ];
+
+            // ----- helper: move NO button to random spot inside panel (only on click) -----
+            function moveNoButtonAway() {
+                if (isYesClicked) return;           // no moving after YES
+                if (!noBtn) return;
+
+                // Change to fixed positioning on entire viewport
+                noBtn.style.position = 'fixed';
+                noBtn.style.zIndex = '100002';
+                
+                // Get viewport dimensions
+                const viewportW = window.innerWidth;
+                const viewportH = window.innerHeight;
+                
+                const btnWidth = noBtn.offsetWidth;
+                const btnHeight = noBtn.offsetHeight;
+                
+                // Allow movement across entire screen with large distances
+                let left = Math.floor(Math.random() * (viewportW - btnWidth));
+                let top = Math.floor(Math.random() * (viewportH - btnHeight));
+                
+                // Keep within bounds
+                left = Math.max(0, Math.min(left, viewportW - btnWidth));
+                top = Math.max(0, Math.min(top, viewportH - btnHeight));
+                
+                noBtn.style.left = left + 'px';
+                noBtn.style.top = top + 'px';
+                
+                // tiny shake for fun
+                noBtn.style.transform = 'scale(0.9)';
+                setTimeout(() => {
+                    if (noBtn) noBtn.style.transform = 'scale(1)';
+                }, 120);
+            }
+
+            // ----- reset NO button to normal flow (initial state) -----
+            function resetNoButtonPosition() {
+                if (noBtn) {
+                    noBtn.style.position = '';
+                    noBtn.style.left = '';
+                    noBtn.style.top = '';
+                    noBtn.style.zIndex = '';
+                    noBtn.style.transform = '';
+                }
+            }
+
+            // ----- update message based on click count (infinite variety) -----
+            function updateMessageForNoClick() {
+                if (isYesClicked) return;
+                
+                // if count is within array length, pick exact, otherwise cycle
+                let messageIndex;
+                if (noClickCount < noMessages.length) {
+                    messageIndex = noClickCount;
+                } else {
+                    // after we've used all messages, cycle through a subset or continue
+                    // we create a smooth loop: from index 3 onward again (keep playful)
+                    const loopFrom = 3;  // "i dont want to give up" vibe
+                    const loopLength = noMessages.length - loopFrom;
+                    const offset = (noClickCount - noMessages.length) % loopLength;
+                    messageIndex = loopFrom + offset;
+                }
+                
+                messageBox.innerText = noMessages[messageIndex] + ' 😘';
+                
+                // also make the main question a little more pleading?
+                if (noClickCount >= 2) {
+                    mainQuestion.innerText = 'will you be my valentine? 🥺👉👈';
+                }
+                if (noClickCount >= 6) {
+                    mainQuestion.innerText = 'please? will you be my valentines? 💗';
+                }
+                if (noClickCount >= 10) {
+                    mainQuestion.innerText = 'will you be my valentines? (eternal hope) 🌸';
+                }
+            }
+
+            // ----- NO button click handler: move + message + count -----
+            function onNoClick(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                
+                if (isYesClicked) return;           // YES already chosen, ignore NO clicks
+                
+                // 1. increment no-click counter
+                noClickCount++;
+                
+                // 2. move button to a random spot (only on click, never on hover)
+                moveNoButtonAway();
+                
+                // 3. update the dynamic message with "are you sure?" / "really?" etc.
+                updateMessageForNoClick();
+                
+                // 4. extra playful: little heartbreak emoji on button? optional
+                noBtn.innerText = 'NO 😢';  // stays consistent, but we can change rarely
+                if (noClickCount > 4) {
+                    noBtn.innerText = 'NO 💔';
+                }
+                if (noClickCount > 8) {
+                    noBtn.innerText = 'NO 🥀';
+                }
+                if (noClickCount > 12) {
+                    noBtn.innerText = 'NO 😿';
+                }
+                
+                return false;
+            }
+
+            // ----- YES click handler: show gif + yeheyyy I LOVE YOUU -----
+            function onYesClick(e) {
+                e.preventDefault();
+                
+                if (isYesClicked) return;   // already celebrated
+                
+                isYesClicked = true;         // lock
+                
+                // 1. pop up GIF & yeheyyy love message
+                surpriseArea.style.display = 'block';
+                
+                // 2. change main question to sweet acceptance
+                mainQuestion.innerText = 'yay! you said YES! 💖🥰';
+                
+                // 3. update message box with happy text
+                messageBox.innerText = 'i knew it baby! forever grateful mwaaa💘';
+                
+                // 4. disable no button completely, fade it, remove click handler
+                noBtn.disabled = true;
+                noBtn.style.opacity = '0.6';
+                noBtn.style.cursor = 'default';
+                noBtn.style.pointerEvents = 'none';    // no more clicks
+                noBtn.innerText = '❤️❤️';
+                
+                // 5. reset its position? just keep it wherever, but disable moving
+                // also remove event listeners (but we keep reference)
+                noBtn.removeEventListener('click', onNoClick);
+                
+                // 6. yes button gets sparkle
+                yesBtn.style.transform = 'scale(1.1)';
+                yesBtn.style.background = '#ff4d6d';
+                
+                
+            }
+
+            
+            function closeGalleryAndReturnHome() {
+                
+                const galleryModal = document.getElementById('galleryModal');
+                const galleryViewer = document.getElementById('galleryViewer');
+                if (galleryModal) galleryModal.classList.remove('show');
+                if (galleryViewer) galleryViewer.classList.remove('show');
+                
+                
+                if (surpriseArea) surpriseArea.style.display = 'none';
+                
+              
+                isYesClicked = false;
+                noClickCount = 0;
+                
+               
+                noBtn.disabled = false;
+                noBtn.style.opacity = '1';
+                noBtn.style.cursor = 'pointer';
+                noBtn.style.pointerEvents = 'auto';
+                noBtn.innerText = 'NO 😿';
+                noBtn.style.position = '';
+                noBtn.style.left = '';
+                noBtn.style.top = '';
+                noBtn.style.zIndex = '';
+                noBtn.style.transform = '';
+                
+                yesBtn.style.transform = '';
+                yesBtn.style.background = '';
+                
+                
+                mainQuestion.innerText = 'will you be my valentines baby kelly?';
+                messageBox.innerText = '💕 click YES or NO? 💕';
+                
+              
+                noBtn.removeEventListener('click', onNoClick);
+                yesBtn.removeEventListener('click', onYesClick);
+                noBtn.addEventListener('click', onNoClick);
+                yesBtn.addEventListener('click', onYesClick);
+            }
+
+            function initApp() {
+                
+                surpriseArea.style.display = 'none';
+                
+                resetNoButtonPosition();
+                
+                noBtn.addEventListener('click', onNoClick);
+                yesBtn.addEventListener('click', onYesClick);
+                
+                if (panel) panel.style.position = 'relative';
+                
+                messageBox.innerText = '💕 click YES or NO? 💕';
+                mainQuestion.innerText = 'will you be my valentines baby kelly?';
+                
+                noClickCount = 0;
+                isYesClicked = false;
+                
+                noBtn.disabled = false;
+                noBtn.style.opacity = '1';
+                noBtn.style.pointerEvents = 'auto';
+                noBtn.style.cursor = 'pointer';
+                noBtn.innerText = 'NO 😿';
+
+                const openGalleryBtn = document.getElementById('openGalleryBtn');
+                const photoGallery = document.getElementById('photoGallery');
+                const galleryGrid = document.getElementById('galleryGrid');
+
+                const galleryImages = [
+                    'https://i.ibb.co/yF3rFGrh/1.jpg',
+                    'https://i.ibb.co/PvPR17k9/2.jpg',
+                    'https://i.ibb.co/h1tXx2vc/3.jpg',
+                    'https://i.ibb.co/jPJkhhgc/4.jpg',
+                    'https://i.ibb.co/G1p21pK/5.jpg',
+                    'https://i.ibb.co/ym40WXmR/6.jpg',
+                    'https://i.ibb.co/8g4h3kZ8/7.jpg',
+                    'https://i.ibb.co/zhnXFzZr/8.jpg',
+                    'https://i.ibb.co/8gCSXcY3/9.jpg',
+                    'https://i.ibb.co/sJPRPMmW/10.jpg'
+                ];
+
+                if (galleryGrid) {
+                    galleryGrid.innerHTML = '';
+                    galleryImages.forEach((src, idx) => {
+                        const img = document.createElement('img');
+                        img.src = src;
+                        img.alt = 'photo ' + (idx+1);
+                        img.dataset.index = idx;
+                        img.addEventListener('click', () => openViewer(idx));
+                        galleryGrid.appendChild(img);
+                    });
+                }
+
+                if (openGalleryBtn) {
+                    openGalleryBtn.addEventListener('click', function() {
+
+
+                    });
+                }
+
+            }
+
+           
+            initApp();
+
+            window.addEventListener('resize', function() {
+                if (isYesClicked) return;
+                if (!noBtn || noBtn.style.position !== 'fixed') return;
+                
+                const btnW = noBtn.offsetWidth;
+                const btnH = noBtn.offsetHeight;
+                const viewportW = window.innerWidth;
+                const viewportH = window.innerHeight;
+                
+                let left = parseFloat(noBtn.style.left) || 0;
+                let top = parseFloat(noBtn.style.top) || 0;
+                
+                const maxL = viewportW - btnW;
+                const maxT = viewportH - btnH;
+                
+                if (left > maxL) left = maxL;
+                if (top > maxT) top = maxT;
+                if (left < 0) left = 0;
+                if (top < 0) top = 0;
+                
+                noBtn.style.left = left + 'px';
+                noBtn.style.top = top + 'px';
+            });
+
+            window.addEventListener('load', function() {
+                
+                surpriseArea.style.display = 'none';
+                if (!isYesClicked) {
+                    resetNoButtonPosition();
+                }
+            });
+
+        })();
+    </script>
+
+    <style>
+        @keyframes heartFloat {
+            0% {
+                transform: translateY(100vh) translateX(0) scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) translateX(100px) scale(0.5);
+                opacity: 0;
+            }
+        }
+        .heart-float {
+            position: fixed;
+            font-size: 2rem;
+            pointer-events: none;
+            animation: heartFloat 6s ease-in forwards;
+            z-index: 1;
+        }
+        @keyframes textFallGlow {
+            0% {
+                transform: translateY(100vh) translateX(0) scale(1);
+                opacity: 0;
+                text-shadow: 0 0 10px rgba(255, 77, 109, 0.3);
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) translateX(50px) scale(0.8);
+                opacity: 0;
+                text-shadow: 0 0 30px rgba(255, 105, 180, 0.8),
+                             0 0 50px rgba(255, 77, 109, 0.5);
+            }
+        }
+        .love-text-fall {
+            position: fixed;
+            font-size: 1.8rem;
+            font-weight: 900;
+            font-family: 'Arial Black', Arial, sans-serif;
+            color: #ff4d6d;
+            pointer-events: none;
+            animation: textFallGlow 7s ease-in forwards;
+            z-index: 1;
+            text-shadow: 0 0 20px rgba(255, 77, 109, 0.6),
+                         0 0 40px rgba(255, 105, 180, 0.4);
+            white-space: nowrap;
+        }
+    </style>
+
+    <script>
+        
+        function createFallingLoveText() {
+            const messageVariations = [
+                'i love you kelly 💕'
+            ];
+            
+            setInterval(() => {
+                const text = document.createElement('div');
+                text.className = 'love-text-fall';
+                text.textContent = messageVariations[Math.floor(Math.random() * messageVariations.length)];
+                text.style.left = Math.random() * 100 + 'vw';
+                text.style.animationDuration = (5 + Math.random() * 3) + 's';
+                document.body.appendChild(text);
+                
+                setTimeout(() => text.remove(), 8000);
+            }, 2000);
+        }
+        
+        // Create floating hearts animation
+        function createFloatingHearts() {
+            const hearts = ['💖', '💗', '💕', '❤️', '💓'];
+            setInterval(() => {
+                const heart = document.createElement('div');
+                heart.className = 'heart-float';
+                heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.animationDuration = (4 + Math.random() * 3) + 's';
+                heart.style.opacity = Math.random() * 0.7 + 0.3;
+                document.body.appendChild(heart);
+                
+                setTimeout(() => heart.remove(), 7000);
+            }, 500);
+        }
+        
+        window.addEventListener('load', () => {
+            createFallingLoveText();
+            createFloatingHearts();
+        });
+    </script>
+</body>
+</html>
